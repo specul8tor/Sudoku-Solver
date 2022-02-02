@@ -163,7 +163,7 @@ def Solving(board): #Solving Board
 					break
 	PrintBoard(board)
 
-def Initialize(c): # MAIN FUNCTION
+def Initialize(c): # Initialize
 	board = []
 	#c = input("Press 1 to use Testing Board or 2 to input another: ")
 	if c == 2:
@@ -183,9 +183,11 @@ def Initialize(c): # MAIN FUNCTION
 					0,0,0,0,8,0,0,7,9]
 	return board
 
-def Main():
+def main():
 	print("Welcome to Sudoko Solver")
 	print("Press 1 to use test board or Press 2 to input own board")
 	board = Initialize(int(input()))
 	Solving(board)
-Main()
+
+if __name__ == '__main__':
+	main()

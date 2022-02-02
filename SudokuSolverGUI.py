@@ -1,6 +1,7 @@
 import pygame
 from SudokuSolver import Row, Column,ThreeXThreeCheck,ThreeXThree
 
+### GLOBALS ###
 pygame.init()
 
 surface = pygame.display.set_mode((631,631))
@@ -155,52 +156,55 @@ def InitializeGUI():
 					for event in pygame.event.get():
 						if event.type == pygame.KEYDOWN:
 							print("nigga)")
-							
-surface.blit(choices,(0,316))
-while running:
-	clock.tick(120)
-	pygame.display.update()
-	for event in pygame.event.get():
-		if event.type == pygame.QUIT:
-			running = False
-		if event.type == pygame.KEYUP:
-			if event.key == pygame.K_1:
-				board = [5,3,0,0,7,0,0,0,0,
-					 	6,0,0,1,9,5,0,0,0,
-						0,9,8,0,0,0,0,6,0,
-						8,0,0,0,6,0,0,0,3,
-						4,0,0,8,0,3,0,0,1,
-						7,0,0,0,2,0,0,0,6,
-						0,6,0,0,0,0,2,8,0,
-						0,0,0,4,1,9,0,0,5,
-						0,0,0,0,8,0,0,7,9]
-				surface.blit(background,(0,0))
-				PrintingBoard(board)
-				pygame.display.update()
-			if event.key == pygame.K_2:
-				pygame.draw.rect(surface,(0,0,0),(0,0,631,631))
-				surface.blit(background,(0,0))
-				n=0
-				while n!=81:
-					pygame.draw.rect(surface,(0,0,0),(0,0,631,631))
+
+def main(surface,background,font,choices,start,board,running):							
+	surface.blit(choices,(0,316))
+	while running:
+		#clock.tick()
+		pygame.display.update()
+		for event in pygame.event.get():
+			if event.type == pygame.QUIT:
+				running = False
+			if event.type == pygame.KEYUP:
+				if event.key == pygame.K_1:
+					board = [5,3,0,0,7,0,0,0,0,
+						 	6,0,0,1,9,5,0,0,0,
+							0,9,8,0,0,0,0,6,0,
+							8,0,0,0,6,0,0,0,3,
+							4,0,0,8,0,3,0,0,1,
+							7,0,0,0,2,0,0,0,6,
+							0,6,0,0,0,0,2,8,0,
+							0,0,0,4,1,9,0,0,5,
+							0,0,0,0,8,0,0,7,9]
 					surface.blit(background,(0,0))
 					PrintingBoard(board)
 					pygame.display.update()
-					for event in pygame.event.get():
-						if event.type == pygame.QUIT:
-							n=81
-						if event.type == pygame.KEYDOWN:
-							board[n] = int(event.unicode)
-							n+=1
-			if event.key == pygame.K_SPACE:
-				GUISolver()
-				surface.blit(background,(0,0))
-				PrintingBoard(board)
-				pygame.display.update()
+				if event.key == pygame.K_2:
+					pygame.draw.rect(surface,(0,0,0),(0,0,631,631))
+					surface.blit(background,(0,0))
+					n=0
+					while n!=81:
+						pygame.draw.rect(surface,(0,0,0),(0,0,631,631))
+						surface.blit(background,(0,0))
+						PrintingBoard(board)
+						pygame.display.update()
+						for event in pygame.event.get():
+							print(event.type)
+							if event.type == pygame.QUIT:
+								n=81
+							if event.type == pygame.KEYDOWN:
+								board[n] = int(event.unicode)
+								n+=1
+				if event.key == pygame.K_SPACE:
+					GUISolver()
+					surface.blit(background,(0,0))
+					PrintingBoard(board)
+					pygame.display.update()
 
-
+	pygame.display.update()
 				
-
+if __name__ == '__main__':
+	main(surface,background,font,choices,start,board,running)
 
 	#print(event)
 
@@ -219,4 +223,4 @@ while running:
 	#surface.blit(background,(0,0))
 	#PrintingBoard(board)
 	#PrintingBoard(board)
-	pygame.display.update()
+	# pygame.display.update()
